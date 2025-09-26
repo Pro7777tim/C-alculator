@@ -1,5 +1,6 @@
 #include <iostream>
 #include <locale>
+#include <limits>
 
 using namespace std;
 
@@ -8,36 +9,42 @@ int main() {
     cout << "----------" << endl;
     float num1, num2;
     char math;
-    cout << "Enter the number 1: \n";
-    cin >> num1;
-    if (num1) {
-        cout << "Enter a mathematical operation(+,-,*,/): \n";
-        cin >> math;
-        if (math == '+' || math == '-' || math == '/' || math == '*') {
-            cout << "Enter the number 2: \n";
-            cin >> num2;
+    while (true) {
+        cout << "Enter the number 1: \n";
+        cin >> num1;
+        if (num1) {
+            cout << "Enter a mathematical operation(+,-,*,/): \n";
+            cin >> math;
+            if (math == '+' || math == '-' || math == '/' || math == '*') {
+                cout << "Enter the number 2: \n";
+                cin >> num2;
+            } else {
+                cout << "Mathematical operation error \n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
+        if (math && num1 && num2) {
+            switch (math) {
+                case '+':
+                    cout << "Result: " << num1 + num2 << endl;
+                    break;
+                case '-':
+                    cout << "Result: " << num1 - num2 << endl;
+                    break;
+                case '*':
+                    cout << "Result: " << num1 * num2 << endl;
+                    break;
+                case '/':
+                    cout << "Result: " << num1 / num2 << endl;
+                    break;
+            }
         } else {
-            cout << "Mathematical operation error \n";
+            cout << "Input error" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+        cout << "----------" << endl;
     }
-    if (math && num1 && num2) {
-        switch (math) {
-            case '+':
-                cout << "Result: " << num1 + num2 << endl;
-                break;
-            case '-':
-                cout << "Result: " << num1 - num2 << endl;
-                break;
-            case '*':
-                cout << "Result: " << num1 * num2 << endl;
-                break;
-            case '/':
-                cout << "Result: " << num1 / num2 << endl;
-                break;
-        }
-    } else {
-        cout << "Input error" << endl;
-    }
-    cout << "----------" << endl;
     return 0;
 }
