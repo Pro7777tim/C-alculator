@@ -12,16 +12,20 @@ int main() {
     while (true) {
         cout << "Enter the number 1: \n";
         cin >> num1;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (num1) {
             cout << "Enter a mathematical operation(+,-,*,/): \n";
             cin >> math;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (math == '+' || math == '-' || math == '/' || math == '*') {
                 cout << "Enter the number 2: \n";
                 cin >> num2;
-            } else {
-                cout << "Mathematical operation error \n";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                cout << "Mathematical operation error \n";
             }
         }
         if (math && num1 && num2) {
@@ -41,8 +45,6 @@ int main() {
             }
         } else {
             cout << "Input error" << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         cout << "----------" << endl;
     }
